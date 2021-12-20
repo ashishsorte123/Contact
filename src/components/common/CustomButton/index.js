@@ -1,64 +1,50 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, ActivityIndicator} from 'react-native';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const CustomButton = ({
-  onChangeText,
-  iconPosition,
-  icon,
-  style,
-  value,
-  label,
-  error,
-  ...props
+  title,
+  secondary,
+  primary,
+  danger,
+  disabled,
+  loading,
+  onPress,
 }) => {
-  const [focused, setFocused] = React.useState(false);
-
-  const getFlexDirection = () => {
-    if (icon && iconPosition) {
-      if (iconPosition === 'left') {
-        return 'row';
-      } else if (iconPosition === 'right') {
-        return 'row-reverse';
-      }
+  const getBgColor = () => {
+    if (disabled) {
+      return colors.grey;
     }
-  };
-
-  const getBorderColor = () => {
-    if (focused) {
+    if (primary) {
       return colors.primary;
     }
-    if (error) {
+    if (danger) {
       return colors.danger;
-    } else {
-      return colors.grey;
+    }
+    if (secondary) {
+      return colors.secondary;
     }
   };
 
   return (
-    <TouchableOpacity style={styles.inputContainer}>
-      {label && <Text>{label}</Text>}
-      <View
-        style={[
-          styles.wrapper,
-          {alignItems: icon ? 'center' : 'baseline'},
-          {borderColor: getBorderColor(), flexDirection: getFlexDirection()},
-        ]}>
-        <View>{icon && icon}</View>
-        <TextInput
-          style={[styles.textInput, style]}
-          onChangeText={onChangeText}
-          value={value}
-          onFocus={() => {
-            setFocused(true);
-          }}
-          onBlur={() => {
-            setFocused(false);
-          }}
-        />
+    <TouchableOpacity
+      disabled={disabled}
+      onPress={onPress}
+      style={[styles.wrapper, {backgroundColor: getBgColor()}]}>
+      <View style={[styles.loaderSection]}>
+        {loading && <ActivityIndicator color={primary ? colors.secondary : colors.primary} />}
+        {title && (
+          <Text
+            style={{
+              color: disabled ? 'black' : colors.white,
+              paddingLeft: loading ? 5 : 0,
+            }}>
+            {title}
+          </Text>
+        )}
       </View>
-      {error && <Text style={styles.error}>{error}</Text>}
     </TouchableOpacity>
   );
 };

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, TextInput} from 'react-native';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';

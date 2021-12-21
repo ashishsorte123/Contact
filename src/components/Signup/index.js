@@ -54,38 +54,37 @@ const RegisterComponent = ({
             label="Username"
             iconPosition="right"
             placeholder="Enter Username"
-            // value={form.userName || null}
-            // onChangeText={value => {
-            //   onChange({name: 'userName', value});
-            // }}
-            // error={'This field is required'}
+            value={form.userName || null}
+            onChangeText={value => {
+              onChange({name: 'userName', value});
+            }}
           />
           <Input
             label="First Name"
             iconPosition="right"
             placeholder="Enter First name"
-            // value={form.userName || null}
-            // onChangeText={value => {
-            //   onChange({name: 'userName', value});
-            // }}
+            value={form.firstName || null}
+            onChangeText={value => {
+              onChange({name: 'firstName', value});
+            }}
           />
           <Input
             label="Last Name"
             iconPosition="right"
             placeholder="Enter Last name"
-            // value={form.userName || null}
-            // onChangeText={value => {
-            //   onChange({name: 'userName', value});
-            // }}
+            value={form.lastName || null}
+            onChangeText={value => {
+              onChange({name: 'lastName', value});
+            }}
           />
           <Input
             label="Email"
             iconPosition="right"
             placeholder="Enter Email"
-            // value={form.userName || null}
-            // onChangeText={value => {
-            //   onChange({name: 'userName', value});
-            // }}
+            value={form.email || null}
+            onChangeText={value => {
+              onChange({name: 'email', value});
+            }}
           />
 
           <Input
@@ -101,9 +100,9 @@ const RegisterComponent = ({
               </TouchableOpacity>
             }
             iconPosition="right"
-            // onChangeText={value => {
-            //   onChange({name: 'password', value});
-            // }}
+            onChangeText={value => {
+              onChange({name: 'password', value});
+            }}
           />
 
           <CustomButton

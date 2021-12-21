@@ -7,11 +7,12 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     paddingHorizontal: 5,
+
     marginTop: 5,
   },
 
   inputContainer: {
-    paddingVertical: 15,
+    paddingVertical: 12,
   },
 
   textInput: {
@@ -21,7 +22,7 @@ export default StyleSheet.create({
 
   error: {
     color: colors.danger,
-    paddingTop: 5,
+    paddingTop: 4,
     fontSize: 12,
   },
 });

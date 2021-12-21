@@ -26,19 +26,20 @@ const Input = ({
   };
 
   const getBorderColor = () => {
-    if (focused) {
-      return colors.primary;
-    }
     if (error) {
       return colors.danger;
+    }
+
+    if (focused) {
+      return colors.primary;
     } else {
       return colors.grey;
     }
   };
-
   return (
     <View style={styles.inputContainer}>
       {label && <Text>{label}</Text>}
+
       <View
         style={[
           styles.wrapper,
@@ -46,6 +47,7 @@ const Input = ({
           {borderColor: getBorderColor(), flexDirection: getFlexDirection()},
         ]}>
         <View>{icon && icon}</View>
+
         <TextInput
           style={[styles.textInput, style]}
           onChangeText={onChangeText}
@@ -56,8 +58,10 @@ const Input = ({
           onBlur={() => {
             setFocused(false);
           }}
+          {...props}
         />
       </View>
+
       {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );

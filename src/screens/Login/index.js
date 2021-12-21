@@ -1,32 +1,46 @@
-import React from 'react';
-import {Text, TextInput, View} from 'react-native';
-import Container from '../../components/common/Container';
-import CustomButton from '../../components/common/CustomButton';
-import Input from '../../components/common/Input';
-
+import {useRoute} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {useContext} from 'react';
+import LoginComponent from '../../components/Login';
+import loginUser from '../../context/actions/auth/loginUser';
+import {GlobalContext} from '../../context/Provider';
 const Login = () => {
-  const [value, onChangeText] = React.useState('');
+  const [form, setForm] = useState({});
+  const [justSignedUp, setJustSignedUp] = useState(false);
+  const {params} = useRoute();
+
+  React.useEffect(() => {
+    if (params?.data) {
+      setJustSignedUp(true);
+      setForm({...form, userName: params.data.username});
+    }
+  }, [params]);
+
+  const {
+    authDispatch,
+    authState: {error, loading},
+  } = useContext(GlobalContext);
+
+  const onSubmit = () => {
+    if (form.userName && form.password) {
+      loginUser(form)(authDispatch);
+    }
+  };
+
+  const onChange = ({name, value}) => {
+    setJustSignedUp(false);
+    setForm({...form, [name]: value});
+  };
+
   return (
-    <Container>
-      <Input
-        label="Username"
-        onChangeText={text => onChangeText(text)}
-        value={value}
-        iconPosition="right"
-        // error= {'This field is required'}
-      />
-      <Input
-        label="Password"
-        onChangeText={text => onChangeText(text)}
-        value={value}
-        icon={<Text>HIDE</Text>}
-        iconPosition="right"
-      />
-      <CustomButton secondary title="Submit" loading={true} disabled={true} />
-      <CustomButton secondary title="Click Me" loading />
-      <CustomButton primary title="Submit" loading={true} disabled={true} />
-      <CustomButton danger title="Submit" />
-    </Container>
+    <LoginComponent
+      onSubmit={onSubmit}
+      onChange={onChange}
+      form={form}
+      error={error}
+      loading={loading}
+      justSignedUp={justSignedUp}
+    />
   );
 };
 

@@ -9,8 +9,24 @@ const Register = () => {
     setForm({...form, [name]: value});
 
     if (value !== '') {
+      if (name === 'password') {
+        if (value.length > 5) {
+          setError(prev => {
+            return {...prev, [name]: 'This field needs min 5 characters'};
+          });
+        } else {
+          setError(prev => {
+            return {...prev, [name]: null};
+          });
+        }
+      } else {
+        setError(prev => {
+          return {...prev, [name]: null};
+        });
+      }
+    } else {
       setError(prev => {
-        return {...prev, [name]: null};
+        return {...prev, [name]: 'This field is required'};
       });
     }
   };

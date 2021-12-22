@@ -31,7 +31,7 @@ const RegisterComponent = ({
         <Text style={styles.subTitle}>Create a free account</Text>
 
         <View style={styles.form}>
-          {errors.error && <Text>{error.error}</Text>}
+          {error?.error && <Text>{error.error}</Text>}
           <Input
             label="Username"
             iconPosition="right"

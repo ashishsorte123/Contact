@@ -1,17 +1,34 @@
 import React, {useContext, useEffect, useState} from 'react';
 import RegisterComponent from '../../components/Signup';
 import envs from '../../config/env';
-import register from '../../context/actions/auth/register';
+import register, {clearAuthState} from '../../context/actions/auth/register';
 import axios from '../../helpers/axiosInstance';
 import {GlobalContext} from '../../context/Provider';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {LOGIN} from '../../constants/routeNames';
 
 const Register = () => {
   const [form, setForm] = useState({});
+  const {navigate} = useNavigation();
   const [errors, setErrors] = useState({});
   const {
     authDispatch,
     authState: {error, loading, data},
   } = useContext(GlobalContext);
+
+  React.useEffect(() => {
+    if (data) {
+      navigate(LOGIN);
+    }
+  }, [data]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if (data || error) {
+        clearAuthState()(authDispatch);
+      }
+    }, [data, error]),
+  );
 
   const onChange = ({name, value}) => {
     setForm({...form, [name]: value});

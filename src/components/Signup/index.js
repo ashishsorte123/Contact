@@ -2,23 +2,24 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Image, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import Container from '../common/Container';
-import CustomButton from '../common/CustomButton';
-import Input from '../common/Input';
+import Container from '../../components/common/Container';
+import CustomButton from '../../components/common/CustomButton';
+import Input from '../../components/common/Input';
 import {LOGIN} from '../../constants/routeNames';
 import Message from '../common/Message';
 import styles from './styles';
 
 const RegisterComponent = ({
-  error,
-  form,
-  justSignedUp,
-  onChange,
-  loading,
   onSubmit,
+  onChange,
+  form,
+  loading,
+  error,
+  errors,
 }) => {
   const {navigate} = useNavigation();
   const [isSecureEntry, setIsSecureEntry] = useState(true);
+
   return (
     <Container>
       <Image
@@ -29,50 +30,37 @@ const RegisterComponent = ({
       />
 
       <View>
-        <Text style={styles.title}>Welcome to Contacts</Text>
+        <Text style={styles.title}>Welcome to RNContacts</Text>
         <Text style={styles.subTitle}>Create a free account</Text>
 
         <View style={styles.form}>
-          {justSignedUp && (
-            <Message
-              onDismiss={() => {}}
-              success
-              message="Account created successfully"
-            />
+          {error?.error && (
+            <Message retry danger retryFn={onSubmit} message={error?.error} />
           )}
-          {error && !error.error && (
-            <Message
-              onDismiss={() => {}}
-              danger
-              message="invalid credentials"
-            />
-          )}
-
-          {error?.error && <Message danger onDismiss message={error?.error} />}
-
           <Input
             label="Username"
             iconPosition="right"
             placeholder="Enter Username"
-            value={form.userName || null}
+            error={errors.userName || error?.username?.[0]}
             onChangeText={value => {
               onChange({name: 'userName', value});
             }}
           />
+
           <Input
-            label="First Name"
+            label="First name"
             iconPosition="right"
             placeholder="Enter First name"
-            value={form.firstName || null}
             onChangeText={value => {
               onChange({name: 'firstName', value});
             }}
+            error={errors.firstName || error?.first_name?.[0]}
           />
           <Input
             label="Last Name"
             iconPosition="right"
             placeholder="Enter Last name"
-            value={form.lastName || null}
+            error={errors.lastName || error?.last_name?.[0]}
             onChangeText={value => {
               onChange({name: 'lastName', value});
             }}
@@ -81,7 +69,7 @@ const RegisterComponent = ({
             label="Email"
             iconPosition="right"
             placeholder="Enter Email"
-            value={form.email || null}
+            error={errors.email || error?.email?.[0]}
             onChangeText={value => {
               onChange({name: 'email', value});
             }}
@@ -100,21 +88,22 @@ const RegisterComponent = ({
               </TouchableOpacity>
             }
             iconPosition="right"
+            error={errors.password || error?.password?.[0]}
             onChangeText={value => {
               onChange({name: 'password', value});
             }}
           />
 
           <CustomButton
-            disabled={loading}
-            onPress={onSubmit}
             loading={loading}
+            onPress={onSubmit}
+            disabled={loading}
             primary
             title="Submit"
           />
 
           <View style={styles.createSection}>
-            <Text style={styles.infoText}>Already have an account ?</Text>
+            <Text style={styles.infoText}>Already have an account?</Text>
             <TouchableOpacity
               onPress={() => {
                 navigate(LOGIN);

@@ -12,6 +12,7 @@ const GlobalProvider = ({children}) => {
     contacts,
     contactsInitialState,
   );
+
   return (
     <GlobalContext.Provider
       value={{authState, contactsState, authDispatch, contactsDispatch}}>

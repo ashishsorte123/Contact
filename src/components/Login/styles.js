@@ -10,7 +10,7 @@ export default StyleSheet.create({
   },
 
   title: {
-    fontSize: 21,
+    fontSize: 25,
     textAlign: 'center',
     paddingTop: 20,
     fontWeight: '500',
@@ -30,8 +30,9 @@ export default StyleSheet.create({
   createSection: {
     flexDirection: 'row',
   },
+
   linkBtn: {
-    paddingLeft: 17,
+    paddingLeft: 60,
     color: colors.primary,
     fontSize: 16,
   },

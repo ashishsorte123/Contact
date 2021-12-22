@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import RegisterComponent from '../../components/Signup';
+import envs from '../../config/env';
 
 const Register = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  // const {BACKEND_URL} = envs;
+  // console.log('BACKEND_URL :>>', BACKEND_URL);
+  // console.log('__DEV__', __DEV__);
 
   const onChange = ({name, value}) => {
     setForm({...form, [name]: value});

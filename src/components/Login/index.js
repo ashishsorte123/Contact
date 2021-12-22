@@ -9,7 +9,7 @@ import {REGISTER} from '../../constants/routeNames';
 import Message from '../common/Message';
 import styles from './styles';
 
-const LoginComponent = () => {
+const LoginComponent = ({error, onChange, onSubmit}) => {
   const {navigate} = useNavigation();
   return (
     <Container>
@@ -24,24 +24,22 @@ const LoginComponent = () => {
         <Text style={styles.title}>Welcome to Contacts</Text>
         <Text style={styles.subTitle}>Please login here</Text>
 
-        <Message
-          retry
-          retryFn={() => {
-            console.log('222', 222);
-          }}
-          primary
-          onDismiss={() => {}}
-          message="Invalid Credentials"
-        />
-        <Message onDismiss={() => {}} danger message="Invalid Credentials" />
-        <Message onDismiss={() => {}} info message="Invalid Credentials" />
-        <Message onDismiss={() => {}} success message="Invalid Credentials" />
-
         <View style={styles.form}>
+          {error && !error.error && (
+            <Message
+              onDismiss={() => {}}
+              danger
+              message="Invalid Credentials"
+            />
+          )}
+          {error?.error && <Message danger onDismiss message={error?.error} />}
           <Input
             label="Username"
             iconPosition="right"
             placeholder="Enter Username"
+            onChangeText={value => {
+              onChange({name: 'userName', value});
+            }}
           />
 
           <Input
@@ -50,6 +48,9 @@ const LoginComponent = () => {
             secureTextEntry={true}
             icon={<Text>Show</Text>}
             iconPosition="right"
+            onChangeText={value => {
+              onChange({name: 'password', value});
+            }}
           />
 
           <CustomButton primary title="Submit" />

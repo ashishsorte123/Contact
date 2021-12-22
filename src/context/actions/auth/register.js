@@ -42,7 +42,7 @@ export default ({
           type: REGISTER_FAIL,
           payload: err.response
             ? err.response.data
-            : {error: 'Something went wrong, try again'},
+            : {error: 'Something went wrong , try again'},
         });
       });
   };

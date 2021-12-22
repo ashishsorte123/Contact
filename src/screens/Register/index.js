@@ -24,9 +24,11 @@ const Register = () => {
 
   useFocusEffect(
     React.useCallback(() => {
-      if (data || error) {
-        clearAuthState()(authDispatch);
-      }
+      return () => {
+        if (data || error) {
+          clearAuthState()(authDispatch);
+        }
+      };
     }, [data, error]),
   );
 
@@ -57,8 +59,6 @@ const Register = () => {
   };
 
   const onSubmit = () => {
-    // console.log('form :>>', form);
-
     if (!form.userName) {
       setErrors(prev => {
         return {...prev, userName: 'Please add a username'};
@@ -95,10 +95,10 @@ const Register = () => {
 
   return (
     <RegisterComponent
-      form={form}
-      errors={errors}
       onChange={onChange}
       onSubmit={onSubmit}
+      form={form}
+      errors={errors}
       error={error}
       loading={loading}
     />

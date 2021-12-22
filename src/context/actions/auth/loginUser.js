@@ -13,6 +13,7 @@ export default ({password, userName: username}) =>
     axiosInstance
       .post('auth/login', {password, username})
       .then(res => {
+        console.log('res.data :>>', res.data);
         dispatch({
           type: LOGIN_SUCCESS,
           payload: res.data,

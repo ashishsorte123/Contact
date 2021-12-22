@@ -12,7 +12,8 @@ const Login = () => {
   } = useContext(GlobalContext);
 
   const onSubmit = () => {
-    if (form.username && form.password) {
+    if (form.userName && form.password) {
+      console.log('44 :>>', 44);
       loginUser(form)(authDispatch);
     }
   };

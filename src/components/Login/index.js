@@ -9,7 +9,7 @@ import {REGISTER} from '../../constants/routeNames';
 import Message from '../common/Message';
 import styles from './styles';
 
-const LoginComponent = ({error, onChange, onSubmit}) => {
+const LoginComponent = ({error, onChange, onSubmit, loading}) => {
   const {navigate} = useNavigation();
   return (
     <Container>
@@ -53,7 +53,13 @@ const LoginComponent = ({error, onChange, onSubmit}) => {
             }}
           />
 
-          <CustomButton primary title="Submit" />
+          <CustomButton
+            disabled={loading}
+            onPress={onSubmit}
+            loading={loading}
+            primary
+            title="Submit"
+          />
 
           <View style={styles.createSection}>
             <Text style={styles.infoText}>Need a new account?</Text>

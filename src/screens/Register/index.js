@@ -1,29 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import RegisterComponent from '../../components/Signup';
 import envs from '../../config/env';
-import axiosInstance from '../../helpers/axiosInstance';
+import register from '../../context/actions/auth/register';
+import axios from '../../helpers/axiosInstance';
+import {GlobalContext} from '../../context/Provider';
 
 const Register = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  // const {BACKEND_URL} = envs;
-  // console.log('BACKEND_URL :>>', BACKEND_URL);
-  // console.log('__DEV__', __DEV__);
-
-  React.useEffect(() => {
-    axiosInstance.get('/contacts').catch(err => {
-      console.log('err', err);
-    });
-  }, []);
+  const {
+    authDispatch,
+    authState: {error, loading, data},
+  } = useContext(GlobalContext);
 
   const onChange = ({name, value}) => {
     setForm({...form, [name]: value});
 
     if (value !== '') {
       if (name === 'password') {
-        if (value.length < 6) {
+        if (value.length < 8) {
           setErrors(prev => {
-            return {...prev, [name]: 'This field needs min 6 characters'};
+            return {...prev, [name]: 'This field needs min 8 characters'};
           });
         } else {
           setErrors(prev => {
@@ -43,7 +40,7 @@ const Register = () => {
   };
 
   const onSubmit = () => {
-    console.log('form :>>', form);
+    // console.log('form :>>', form);
 
     if (!form.userName) {
       setErrors(prev => {
@@ -70,6 +67,13 @@ const Register = () => {
         return {...prev, password: 'Please add a password'};
       });
     }
+    if (
+      Object.values(form).length === 5 &&
+      Object.values(form).every(item => item.trim().length > 0) &&
+      Object.values(errors).every(item => !item)
+    ) {
+      register(form)(authDispatch);
+    }
   };
 
   return (
@@ -78,6 +82,8 @@ const Register = () => {
       errors={errors}
       onChange={onChange}
       onSubmit={onSubmit}
+      error={error}
+      loading={loading}
     />
   );
 };

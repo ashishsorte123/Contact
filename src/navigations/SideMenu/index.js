@@ -1,4 +1,3 @@
-import {loadOptions} from '@babel/core';
 import React from 'react';
 import {
   View,
@@ -12,8 +11,7 @@ import Container from '../../components/common/Container';
 import {SETTINGS} from '../../constants/routeNames';
 import logoutUser from '../../context/actions/auth/logoutUser';
 import styles from './styles';
-import Icon from 'react-native-vector-icons/Fontisto';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Icon from '../../components/common/Icon';
 
 const SideMenu = ({navigation, authDispatch}) => {
   const handleLogout = () => {
@@ -33,14 +31,14 @@ const SideMenu = ({navigation, authDispatch}) => {
   };
   const menuItems = [
     {
-      icon: <Icon size={20} name="player-settings" />,
+      icon: <Icon type="fontisto" size={20} name="player-settings" />,
       name: 'Settings',
       onPress: () => {
         navigation.navigate(SETTINGS);
       },
     },
     {
-      icon: <MaterialIcons size={20} name="logout" />,
+      icon: <Icon type="material" size={20} name="logout" />,
       name: 'Logout',
       onPress: handleLogout,
     },

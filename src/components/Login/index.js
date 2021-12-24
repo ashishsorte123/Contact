@@ -9,7 +9,14 @@ import {REGISTER} from '../../constants/routeNames';
 import Message from '../common/Message';
 import styles from './styles';
 
-const LoginComponent = ({error, onChange, onSubmit, loading}) => {
+const LoginComponent = ({
+  error,
+  form,
+  justSignedUp,
+  onChange,
+  onSubmit,
+  loading,
+}) => {
   const {navigate} = useNavigation();
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   return (
@@ -26,6 +33,13 @@ const LoginComponent = ({error, onChange, onSubmit, loading}) => {
         <Text style={styles.subTitle}>Please login here</Text>
 
         <View style={styles.form}>
+          {justSignedUp && (
+            <Message
+              onDismiss={() => {}}
+              success
+              message="Account created successfully !!!"
+            />
+          )}
           {error && !error.error && (
             <Message
               onDismiss={() => {}}
@@ -33,11 +47,13 @@ const LoginComponent = ({error, onChange, onSubmit, loading}) => {
               message="Invalid Credentials"
             />
           )}
+
           {error?.error && <Message danger onDismiss message={error?.error} />}
           <Input
             label="Username"
             iconPosition="right"
             placeholder="Enter Username"
+            value={form.userName || null}
             onChangeText={value => {
               onChange({name: 'userName', value});
             }}

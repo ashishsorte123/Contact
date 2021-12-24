@@ -18,11 +18,11 @@ const SideMenu = ({navigation, authDispatch}) => {
     navigation.toggleDrawer();
     Alert.alert('Logout !!!', 'Are you sure you want to logout ?', [
       {
-        text: 'Cancel',
+        text: 'No',
         onPress: () => {},
       },
       {
-        text: 'OK',
+        text: 'Yes',
         onPress: () => {
           logoutUser()(authDispatch);
         },

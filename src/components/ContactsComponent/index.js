@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {
   View,
@@ -8,12 +9,14 @@ import {
   Image,
 } from 'react-native';
 import colors from '../../assets/theme/colors';
+import {CREATE_CONTACT} from '../../constants/routeNames';
 import AppModal from '../common/AppModal';
 import Icon from '../common/Icon';
 import Message from '../common/Message';
 import styles from './styles';
 
 const ContactsComponent = ({modalVisible, data, loading, setModalVisible}) => {
+  const {navigate} = useNavigation();
   const ListEmptyComponent = () => {
     return (
       <View style={{paddingVertical: 100, paddingHorizontal: 90}}>
@@ -71,38 +74,48 @@ const ContactsComponent = ({modalVisible, data, loading, setModalVisible}) => {
     );
   };
   return (
-    <View style={{backgroundColor: colors.white}}>
-      <AppModal
-        title="My Profile"
-        modalBody={
-          <View>
-            <Text>Hello from model</Text>
+    <>
+      <View style={{backgroundColor: colors.white}}>
+        <AppModal
+          title="My Profile"
+          modalBody={
+            <View>
+              <Text>Hello from model</Text>
+            </View>
+          }
+          modalFooter={<></>}
+          setModalVisible={setModalVisible}
+          modalVisible={modalVisible}
+        />
+        {loading && (
+          <View style={{paddingVertical: 100, paddingHorizontal: 90}}>
+            <ActivityIndicator color={colors.primary} size="large" />
           </View>
-        }
-        modalFooter={<></>}
-        setModalVisible={setModalVisible}
-        modalVisible={modalVisible}
-      />
-      {loading && (
-        <View style={{paddingVertical: 100, paddingHorizontal: 90}}>
-          <ActivityIndicator color={colors.primary} size="large" />
-        </View>
-      )}
-      {!loading && (
-        <View style={[{paddingVertical: 20}]}>
-          <FlatList
-            renderItem={renderItem}
-            data={data}
-            ItemSeparatorComponent={() => (
-              <View style={{height: 0.5, backgroundColor: colors.grey}}></View>
-            )}
-            keyExtractor={item => String(item.id)}
-            ListEmptyComponent={ListEmptyComponent}
-            ListFooterComponent={<View style={{height: 100}}></View>}
-          />
-        </View>
-      )}
-    </View>
+        )}
+        {!loading && (
+          <View style={[{paddingVertical: 20}]}>
+            <FlatList
+              renderItem={renderItem}
+              data={data}
+              ItemSeparatorComponent={() => (
+                <View
+                  style={{height: 0.5, backgroundColor: colors.grey}}></View>
+              )}
+              keyExtractor={item => String(item.id)}
+              ListEmptyComponent={ListEmptyComponent}
+              ListFooterComponent={<View style={{height: 100}}></View>}
+            />
+          </View>
+        )}
+      </View>
+      <TouchableOpacity
+        style={styles.floatingActionButton}
+        onPress={() => {
+          navigate(CREATE_CONTACT);
+        }}>
+        <Icon name="plus" size={21} color={colors.white} />
+      </TouchableOpacity>
+    </>
   );
 };
 

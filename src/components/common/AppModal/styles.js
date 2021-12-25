@@ -30,7 +30,7 @@ export default StyleSheet.create({
   body: {
     minHeight: 300,
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 20,
   },
 
   footer: {

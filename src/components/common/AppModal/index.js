@@ -28,6 +28,7 @@ const AppModal = ({
               <View />
               <View />
             </View>
+            <View style={styles.footerSeparator} />
             <View style={styles.body}>{modalBody}</View>
             {modalFooter}
             {!modalFooter && (

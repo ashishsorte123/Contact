@@ -72,12 +72,15 @@ const ContactsComponent = ({modalVisible, data, loading, setModalVisible}) => {
         </View>
       )}
       {!loading && (
-        <FlatList
-          renderItem={renderItem}
-          data={data}
-          keyExtractor={item => String(item.id)}
-          ListEmptyComponent={ListEmptyComponent}
-        />
+        <View style={[{paddingVertical: 20}]}>
+          <FlatList
+            renderItem={renderItem}
+            data={data}
+            keyExtractor={item => String(item.id)}
+            ListEmptyComponent={ListEmptyComponent}
+            ListFooterComponent={<View style={{height: 100}}></View>}
+          />
+        </View>
       )}
     </View>
   );

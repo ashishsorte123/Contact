@@ -12,12 +12,13 @@ const Contacts = () => {
   const {
     contactsDispatch,
     contactsState: {
-      getContacts: {data, loading},
+      getContacts: {data, loading, error},
     },
   } = useContext(GlobalContext);
 
   console.log('data', data);
   console.log('loading', loading);
+  console.log('error :>>', error);
 
   useEffect(() => {
     getContacts()(contactsDispatch);

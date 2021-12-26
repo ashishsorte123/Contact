@@ -28,7 +28,6 @@ const LoginComponent = ({
         style={styles.logoImage}
       />
 
-
       <View>
         <Text style={styles.title}>Welcome to Contacts</Text>
         <Text style={styles.subTitle}>Please login here</Text>

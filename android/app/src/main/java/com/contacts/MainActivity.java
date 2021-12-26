@@ -1,4 +1,4 @@
-package com.contacts;
+package com.ashish.contacts;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;

@@ -7,7 +7,7 @@ import getContacts from '../../context/actions/contacts/getContacts';
 import {GlobalContext} from '../../context/Provider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Contacts = () => {
+const Contacts = ({navigation}) => {
   const [sortBy, setSortBy] = React.useState(null);
   const {setOptions, toggleDrawer} = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);

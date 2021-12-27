@@ -19,9 +19,6 @@ const contacts = (state, {type, payload}) => {
         },
       };
     case CREATE_CONTACTS_SUCCESS:
-      console.log('payload', payload);
-      console.log('state.getContacts.data', state.getContacts.data);
-
       return {
         ...state,
         createContact: {

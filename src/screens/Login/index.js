@@ -11,7 +11,6 @@ const Login = () => {
 
   React.useEffect(() => {
     if (params?.data) {
-      console.log('params', params);
       setJustSignedUp(true);
       setForm({...form, userName: params.data.username});
     }
@@ -24,7 +23,6 @@ const Login = () => {
 
   const onSubmit = () => {
     if (form.userName && form.password) {
-      console.log('44 :>>', 44);
       loginUser(form)(authDispatch);
     }
   };

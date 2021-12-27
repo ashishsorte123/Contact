@@ -82,7 +82,6 @@ const CreateContact = () => {
             navigate(CONTACT_DETAIL, {item});
           });
         })(err => {
-          console.log('err :>> ', err);
           setIsUploading(false);
         });
       } else {

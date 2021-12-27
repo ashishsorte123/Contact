@@ -4,9 +4,9 @@ import createContact from '../../context/actions/contacts/createContact';
 import {GlobalContext} from '../../context/Provider';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {CONTACT_DETAIL, CONTACT_LIST} from '../../constants/routeNames';
-import uploadImage from '../../helpers/uploadImage';
-import countryCodes from '../../utils/countryCodes';
-import editContact from '../../context/actions/contacts/editContact';
+// import uploadImage from '../../helpers/uploadImage';
+// import countryCodes from '../../utils/countryCodes';
+// import editContact from '../../context/actions/contacts/editContact';
 
 const CreateContact = () => {
   const {

@@ -18,10 +18,10 @@ const ImagePicker = React.forwardRef(({onFileSelected}, ref) => {
           cropping: true,
           freeStyleCropEnabled: true,
         })
-          .then((images) => {
+          .then(images => {
             onFileSelected(images);
           })
-          .catch((error) => {});
+          .catch(error => {});
       },
     },
     {
@@ -34,10 +34,10 @@ const ImagePicker = React.forwardRef(({onFileSelected}, ref) => {
           cropping: true,
           freeStyleCropEnabled: true,
         })
-          .then((images) => {
+          .then(images => {
             onFileSelected(images);
           })
-          .catch((error) => {});
+          .catch(error => {});
       },
     },
   ];

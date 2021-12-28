@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import colors from '../../assets/theme/colors';
-import {CREATE_CONTACT} from '../../constants/routeNames';
+import {CONTACT_DETAIL, CREATE_CONTACT} from '../../constants/routeNames';
 import Icon from '../common/Icon';
 import Message from '../common/Message';
 import styles from './styles';
@@ -29,7 +29,11 @@ const ContactsComponent = ({sortBy, data, loading}) => {
 
     // https://avatars0.githubusercontent.com/u/20795487?s=460&u=c86c6d0f346c95cb8df85ffa596fd90ad8aa14a8&v=4
     return (
-      <TouchableOpacity style={styles.itemContainer}>
+      <TouchableOpacity
+        style={styles.itemContainer}
+        onPress={() => {
+          navigate(CONTACT_DETAIL, {item});
+        }}>
         <View style={styles.item}>
           {contact_picture ? (
             <Image

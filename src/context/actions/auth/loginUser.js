@@ -14,6 +14,7 @@ export default ({password, userName: username}) =>
     axiosInstance
       .post('auth/login', {password, username})
       .then(res => {
+        console.log('res.data :>> ', res.data);
         AsyncStorage.setItem('token', res.data.token);
         AsyncStorage.setItem('user', JSON.stringify(res.data.token));
         dispatch({

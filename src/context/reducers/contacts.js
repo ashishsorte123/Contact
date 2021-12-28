@@ -5,6 +5,9 @@ import {
   DELETE_CONTACTS_FAIL,
   DELETE_CONTACTS_LOADING,
   DELETE_CONTACTS_SUCCESS,
+  Edit_CONTACTS_FAIL,
+  Edit_CONTACTS_LOADING,
+  Edit_CONTACTS_SUCCESS,
   GET_CONTACTS_FAIL,
   GET_CONTACTS_LOADING,
   GET_CONTACTS_SUCCESS,
@@ -12,6 +15,48 @@ import {
 
 const contacts = (state, {type, payload}) => {
   switch (type) {
+    case Edit_CONTACTS_LOADING:
+      return {
+        ...state,
+        createContact: {
+          ...state.createContact,
+          loading: true,
+          error: null,
+        },
+      };
+    case Edit_CONTACTS_SUCCESS:
+      return {
+        ...state,
+        createContact: {
+          ...state.createContact,
+          loading: false,
+          error: null,
+        },
+
+        getContacts: {
+          ...state.getContacts,
+          loading: false,
+          data: state.getContacts.data.map(item => {
+            if (item.id === payload.id) {
+              return payload;
+            } else {
+              return item;
+            }
+          }),
+          error: null,
+        },
+      };
+
+    case Edit_CONTACTS_FAIL:
+      return {
+        ...state,
+        createContact: {
+          ...state.createContact,
+          loading: false,
+          error: null,
+        },
+      };
+
     case DELETE_CONTACTS_LOADING:
       return {
         ...state,

@@ -30,11 +30,12 @@ const CreateContact = () => {
       setIsUploading(true);
       uploadImage(localFile)(url => {
         setIsUploading(false);
+        console.log('after upload url :>>', url);
         createContact({...form, contactPicture: url})(contactsDispatch)(() => {
           navigate(CONTACT_LIST);
         });
-      })(error => {
-        console.log('error :>> ', error);
+      })(err => {
+        console.log('after upload err :>> ', err);
         setIsUploading(false);
       });
     }

@@ -26,7 +26,7 @@ const ContactDetail = () => {
   } = useContext(GlobalContext);
   const {setOptions} = useNavigation();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (item) {
       setOptions({
         title: item.first_name + ' ' + item.last_name,

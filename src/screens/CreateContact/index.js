@@ -23,7 +23,7 @@ const CreateContact = () => {
   const [localFile, setLocalFile] = useState(null);
   const {params} = useRoute();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (params?.contact) {
       setOptions({title: 'Update contact'});
       const {

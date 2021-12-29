@@ -6,7 +6,7 @@ import {GlobalContext} from '../../context/Provider';
 const Logout = () => {
   const {authDispatch} = useContext(GlobalContext);
 
-  useEffect(() => {
+  React.useEffect(() => {
     logoutUser()(authDispatch);
   }, []);
   return <ActivityIndicator />;

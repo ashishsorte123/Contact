@@ -21,7 +21,7 @@ const Contacts = ({navigation}) => {
     },
   } = useContext(GlobalContext);
 
-  useEffect(() => {
+  React.useEffect(() => {
     getContacts()(contactsDispatch);
   }, []);
 
@@ -42,14 +42,14 @@ const Contacts = ({navigation}) => {
     }, []),
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     contactsRef.current = true;
     return () => {
       contactsRef.current = false;
     };
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const prev = contactsRef.current;
     contactsRef.current = data;
     const newList = contactsRef.current;

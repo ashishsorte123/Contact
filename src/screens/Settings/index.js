@@ -76,7 +76,7 @@ const Settings = () => {
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     getSettings();
   }, []);
 

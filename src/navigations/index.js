@@ -31,15 +31,15 @@ const AppNavContainer = () => {
     } catch (error) {}
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     getUser();
   }, [isLoggedIn]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (authLoaded) {
       SplashScreen.hide();
     }
-  }, []);
+  });
 
   return (
     <>

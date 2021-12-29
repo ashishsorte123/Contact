@@ -2,7 +2,6 @@ package com.ashish.contacts;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
-
 import org.devio.rn.splashscreen.SplashScreen;
 
 public class MainActivity extends ReactActivity {

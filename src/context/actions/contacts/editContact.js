@@ -27,6 +27,7 @@ export default (form, id) => dispatch => onSuccess => {
         type: EDIT_CONTACT_SUCCESS,
         payload: res.data,
       });
+      console.log('res.data :>> ', res.data);
 
       onSuccess(res.data);
     })

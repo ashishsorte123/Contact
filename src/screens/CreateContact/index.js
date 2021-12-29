@@ -44,10 +44,13 @@ const CreateContact = () => {
           phoneCode: countryCode,
         };
       });
+      // console.log('countryCode :>> ', countryCode);
 
       const country = countryCodes.find(item => {
         return item.value.replace('+', '') === countryCode;
       });
+
+      // console.log('country :>> ', country);
 
       if (country) {
         setForm(prev => {
@@ -64,12 +67,15 @@ const CreateContact = () => {
     }
   }, []);
 
+  console.log('form', form);
+  console.log('localFile', localFile);
+
   const onChangeText = ({name, value}) => {
     setForm({...form, [name]: value});
   };
 
   const onSubmit = () => {
-    if (params?.contact) {
+    if (!params?.contact) {
       if (localFile?.size) {
         setIsUploading(true);
         uploadImage(localFile)(url => {
@@ -85,7 +91,7 @@ const CreateContact = () => {
           setIsUploading(false);
         });
       } else {
-        editContact(form, params?.contact_id)(contactsDispatch)(item => {
+        editContact(form, params?.contact.id)(contactsDispatch)(item => {
           navigate(CONTACT_DETAIL, {item});
         });
       }
@@ -94,12 +100,14 @@ const CreateContact = () => {
         setIsUploading(true);
         uploadImage(localFile)(url => {
           setIsUploading(false);
-          createContact({...form, contactPicture: url})(contactsDispatch)(
-            () => {
-              navigate(CONTACT_LIST);
-            },
-          );
+          createContact(
+            {...form, contactPicture: url},
+            params?.contact.id,
+          )(contactsDispatch)(item => {
+            navigate(CONTACT_DETAIL, {item});
+          });
         })(err => {
+          console.log('err :>> ', err);
           setIsUploading(false);
         });
       } else {

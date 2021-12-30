@@ -18,7 +18,7 @@ export default id => dispatch => onSuccess => {
         type: DELETE_CONTACTS_SUCCESS,
         payload: id,
       });
-      onSuccess(s);
+      onSuccess();
     })
     .catch(err => {
       dispatch({

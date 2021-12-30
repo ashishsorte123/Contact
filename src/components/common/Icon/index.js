@@ -52,8 +52,8 @@ const getIconFont = type => {
 };
 
 const Icon = ({type, ...props}) => {
-  const FontICon = getIconFont(type);
-  return <FontICon {...props} />;
+  const FontIcon = getIconFont(type);
+  return <FontIcon {...props} />;
 };
 
 export default Icon;

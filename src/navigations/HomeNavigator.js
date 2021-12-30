@@ -11,7 +11,6 @@ import Contacts from '../screens/Contacts';
 import ContactDetail from '../screens/ContactDetail';
 import CreateContact from '../screens/CreateContact';
 import Settings from '../screens/Settings';
-import {Text} from 'react-native';
 import Logout from '../screens/Logout';
 
 const HomeNavigator = () => {

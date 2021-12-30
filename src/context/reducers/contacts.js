@@ -2,12 +2,11 @@ import {
   CREATE_CONTACTS_FAIL,
   CREATE_CONTACTS_LOADING,
   CREATE_CONTACTS_SUCCESS,
-  DELETE_CONTACTS_FAIL,
   DELETE_CONTACTS_LOADING,
   DELETE_CONTACTS_SUCCESS,
-  Edit_CONTACTS_FAIL,
-  Edit_CONTACTS_LOADING,
-  Edit_CONTACTS_SUCCESS,
+  EDIT_CONTACTS_FAIL,
+  EDIT_CONTACTS_LOADING,
+  EDIT_CONTACTS_SUCCESS,
   GET_CONTACTS_FAIL,
   GET_CONTACTS_LOADING,
   GET_CONTACTS_SUCCESS,
@@ -15,7 +14,7 @@ import {
 
 const contacts = (state, {type, payload}) => {
   switch (type) {
-    case Edit_CONTACTS_LOADING:
+    case EDIT_CONTACTS_LOADING:
       return {
         ...state,
         createContact: {
@@ -24,7 +23,8 @@ const contacts = (state, {type, payload}) => {
           error: null,
         },
       };
-    case Edit_CONTACTS_SUCCESS:
+
+    case EDIT_CONTACTS_SUCCESS:
       return {
         ...state,
         createContact: {
@@ -47,7 +47,7 @@ const contacts = (state, {type, payload}) => {
         },
       };
 
-    case Edit_CONTACTS_FAIL:
+    case EDIT_CONTACTS_FAIL:
       return {
         ...state,
         createContact: {
@@ -66,6 +66,7 @@ const contacts = (state, {type, payload}) => {
           error: null,
         },
       };
+
     case DELETE_CONTACTS_SUCCESS:
       return {
         ...state,
@@ -74,6 +75,7 @@ const contacts = (state, {type, payload}) => {
           loading: false,
           error: null,
         },
+
         getContacts: {
           ...state.getContacts,
           loading: false,
@@ -88,18 +90,10 @@ const contacts = (state, {type, payload}) => {
         createContact: {
           ...state.createContact,
           loading: false,
-          error: payload,
-        },
-      };
-    case DELETE_CONTACTS_FAIL:
-      return {
-        ...state,
-        deleteContact: {
-          ...state.deleteContact,
-          loading: false,
           error: null,
         },
       };
+
     case CREATE_CONTACTS_LOADING:
       return {
         ...state,
@@ -118,6 +112,7 @@ const contacts = (state, {type, payload}) => {
           error: null,
           data: payload,
         },
+
         getContacts: {
           ...state.getContacts,
           loading: false,

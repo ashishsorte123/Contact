@@ -23,7 +23,7 @@ const CreateContact = () => {
   const [localFile, setLocalFile] = useState(null);
   const {params} = useRoute();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (params?.contact) {
       setOptions({title: 'Update contact'});
       const {
@@ -44,13 +44,10 @@ const CreateContact = () => {
           phoneCode: countryCode,
         };
       });
-      // console.log('countryCode :>> ', countryCode);
 
       const country = countryCodes.find(item => {
         return item.value.replace('+', '') === countryCode;
       });
-
-      // console.log('country :>> ', country);
 
       if (country) {
         setForm(prev => {
@@ -66,9 +63,6 @@ const CreateContact = () => {
       }
     }
   }, []);
-
-  console.log('form', form);
-  console.log('localFile', localFile);
 
   const onChangeText = ({name, value}) => {
     setForm({...form, [name]: value});
@@ -103,8 +97,8 @@ const CreateContact = () => {
           createContact(
             {...form, contactPicture: url},
             params?.contact.id,
-          )(contactsDispatch)(item => {
-            navigate(CONTACT_DETAIL, {item});
+          )(contactsDispatch)(() => {
+            navigate(CONTACT_LIST);
           });
         })(err => {
           console.log('err :>> ', err);
@@ -136,6 +130,7 @@ const CreateContact = () => {
     closeSheet();
     setLocalFile(image);
   };
+
   return (
     <CreateContactComponent
       onSubmit={onSubmit}

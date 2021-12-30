@@ -31,7 +31,7 @@ const AppNavContainer = () => {
     } catch (error) {}
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     getUser();
   }, [isLoggedIn]);
 

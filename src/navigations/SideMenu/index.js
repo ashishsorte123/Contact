@@ -52,10 +52,11 @@ const SideMenu = ({navigation, authDispatch}) => {
           source={require('../../assets/images/logo.png')}
           style={styles.logoImage}
         />
+
         <View style={{paddingHorizontal: 70}}>
           {menuItems.map(({name, icon, onPress}) => (
             <TouchableOpacity onPress={onPress} key={name} style={styles.item}>
-              {icon}
+              <View style={styles.icon}>{icon}</View>
               <Text style={styles.itemText}>{name}</Text>
             </TouchableOpacity>
           ))}

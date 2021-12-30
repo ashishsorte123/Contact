@@ -11,25 +11,26 @@ import {CONTACT_DETAIL} from '../../constants/routeNames';
 
 const Contacts = ({navigation}) => {
   const [sortBy, setSortBy] = React.useState(null);
+
   const {setOptions, toggleDrawer} = useNavigation();
+
   const [modalVisible, setModalVisible] = useState(false);
-  const contactsRef = useRef(false);
+
+  const contactsRef = useRef([]);
+
   const {
     contactsDispatch,
     contactsState: {
-      getContacts: {data, loading, error},
+      getContacts: {data, loading},
     },
   } = useContext(GlobalContext);
 
-  React.useEffect(() => {
+  useEffect(() => {
     getContacts()(contactsDispatch);
   }, []);
 
-  console.log('sortBy', sortBy);
-
   const getSettings = async () => {
     const sortPref = await AsyncStorage.getItem('sortBy');
-    console.log('sortPref :>>', sortPref);
     if (sortPref) {
       setSortBy(sortPref);
     }
@@ -51,8 +52,11 @@ const Contacts = ({navigation}) => {
 
   React.useEffect(() => {
     const prev = contactsRef.current;
+
     contactsRef.current = data;
+
     const newList = contactsRef.current;
+
     if (newList.length - prev.length === 1) {
       const newContact = newList.find(
         item => !prev.map(i => i.id).includes(item.id),
@@ -73,6 +77,7 @@ const Contacts = ({navigation}) => {
       ),
     });
   }, []);
+
   return (
     <ContactsComponent
       modalVisible={modalVisible}

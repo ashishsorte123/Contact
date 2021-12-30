@@ -1,7 +1,7 @@
 import {
-  CREATE_CONTACT_FAIL,
-  CREATE_CONTACT_LOADING,
-  CREATE_CONTACT_SUCCESS,
+  CREATE_CONTACTS_FAIL,
+  CREATE_CONTACTS_LOADING,
+  CREATE_CONTACTS_SUCCESS,
 } from '../../../constants/actionTypes';
 import axios from '../../../helpers/axiosInstance';
 
@@ -16,20 +16,20 @@ export default form => dispatch => onSuccess => {
   };
 
   dispatch({
-    type: CREATE_CONTACT_LOADING,
+    type: CREATE_CONTACTS_LOADING,
   });
   axios
     .post('/contacts/', requestPayload)
     .then(res => {
       dispatch({
-        type: CREATE_CONTACT_SUCCESS,
+        type: CREATE_CONTACTS_SUCCESS,
         payload: res.data,
       });
       onSuccess();
     })
     .catch(err => {
       dispatch({
-        type: CREATE_CONTACT_FAIL,
+        type: CREATE_CONTACTS_FAIL,
         payload: err.response
           ? err.response.data
           : {error: 'Something went wrong, try again'},

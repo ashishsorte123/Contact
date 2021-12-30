@@ -1,7 +1,7 @@
 import {
-  EDIT_CONTACT_FAIL,
-  EDIT_CONTACT_LOADING,
-  EDIT_CONTACT_SUCCESS,
+  EDIT_CONTACTS_FAIL,
+  EDIT_CONTACTS_LOADING,
+  EDIT_CONTACTS_SUCCESS,
 } from '../../../constants/actionTypes';
 import axios from '../../../helpers/axiosInstance';
 
@@ -17,24 +17,23 @@ export default (form, id) => dispatch => onSuccess => {
 
   console.log('requestPayload :>> ', requestPayload);
   dispatch({
-    type: EDIT_CONTACT_LOADING,
+    type: EDIT_CONTACTS_LOADING,
   });
 
   axios
     .put(`/contacts/${id}`, requestPayload)
     .then(res => {
       dispatch({
-        type: EDIT_CONTACT_SUCCESS,
+        type: EDIT_CONTACTS_SUCCESS,
         payload: res.data,
       });
       console.log('res.data :>> ', res.data);
-
       onSuccess(res.data);
     })
     .catch(err => {
       console.log('err', err.response);
       dispatch({
-        type: EDIT_CONTACT_FAIL,
+        type: EDIT_CONTACTS_FAIL,
         payload: err.response
           ? err.response.data
           : {error: 'Something went wrong, try again'},

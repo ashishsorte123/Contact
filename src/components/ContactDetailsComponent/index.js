@@ -1,14 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  ActivityIndicator,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import colors from '../../assets/theme/colors';
 import {DEFAULT_IMAGE_URI} from '../../constants/general';
 import {CREATE_CONTACT} from '../../constants/routeNames';
@@ -29,15 +21,14 @@ const ContactDetailsComponent = ({
 }) => {
   const {navigate} = useNavigation();
 
-  const {contact_picture, first_name, last_name, country_code, phone_number} =
-    contact;
+  const {contact_picture, first_name, last_name, phone_number} = contact;
 
   // https://avatars0.githubusercontent.com/u/20795487?s=460&u=c86c6d0f346c95cb8df85ffa596fd90ad8aa14a8&v=4
 
   return (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
-        {(contact_picture || !uploadSucceeded) && (
+        {(contact_picture || uploadSucceeded) && (
           <ImageComponent src={contact_picture || localFile?.path} />
         )}
 
@@ -47,6 +38,7 @@ const ContactDetailsComponent = ({
               width={150}
               height={150}
               source={{uri: localFile?.path || DEFAULT_IMAGE_URI}}
+              style={styles.imageView}
             />
 
             <TouchableOpacity
@@ -95,6 +87,7 @@ const ContactDetailsComponent = ({
             <Text style={styles.middleText}>Video</Text>
           </TouchableOpacity>
         </View>
+
         <View style={styles.middleCallOptions}>
           <Icon
             type="ionicon"

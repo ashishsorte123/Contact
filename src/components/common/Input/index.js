@@ -29,13 +29,13 @@ const Input = ({
     if (error) {
       return colors.danger;
     }
-
     if (focused) {
       return colors.primary;
     } else {
       return colors.grey;
     }
   };
+
   return (
     <View style={styles.inputContainer}>
       {label && <Text>{label}</Text>}

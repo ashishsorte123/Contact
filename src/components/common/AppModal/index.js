@@ -31,7 +31,8 @@ const AppModal = ({
                 <Icon size={27} type="evil" name="close" />
               </TouchableOpacity>
 
-              <Text style={styles.title}>{title || 'Contacts'}</Text>
+              <Text style={styles.title}>{title || 'RN Contacts'}</Text>
+
               <View />
               <View />
               <View />
@@ -39,8 +40,10 @@ const AppModal = ({
               <View />
             </View>
             <View style={styles.footerSeparator} />
+
             <View style={styles.body}>{modalBody}</View>
             {modalFooter}
+
             {!modalFooter && (
               <View>
                 <>
@@ -62,7 +65,7 @@ const AppModal = ({
   );
 };
 
-AppModal.prototype = {
+AppModal.propTypes = {
   closeOnTouchOutside: PropTypes.bool,
 };
 

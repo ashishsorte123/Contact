@@ -9,16 +9,11 @@ import {LOGIN} from '../../constants/routeNames';
 import styles from './styles';
 import Message from '../../components/common/Message';
 
-const RegisterComponent = ({
-  form,
-  loading,
-  onChange,
-  onSubmit,
-  error,
-  errors,
-}) => {
+const RegisterComponent = ({loading, onChange, onSubmit, error, errors}) => {
   const {navigate} = useNavigation();
-  const [isSecureEntry, setIsSecureEntry ] = useState(true);
+
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
+
   return (
     <Container>
       <Image
@@ -29,7 +24,7 @@ const RegisterComponent = ({
       />
 
       <View>
-        <Text style={styles.title}>Welcome to Contacts</Text>
+        <Text style={styles.title}>Welcome to RN Contacts</Text>
         <Text style={styles.subTitle}>Create a free account</Text>
 
         <View style={styles.form}>
@@ -45,6 +40,7 @@ const RegisterComponent = ({
               onChange({name: 'userName', value});
             }}
           />
+
           <Input
             label="First Name"
             iconPosition="right"
@@ -54,6 +50,7 @@ const RegisterComponent = ({
               onChange({name: 'firstName', value});
             }}
           />
+
           <Input
             label="Last Name"
             iconPosition="right"

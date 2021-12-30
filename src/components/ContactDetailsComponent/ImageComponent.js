@@ -4,7 +4,8 @@ import styles from './styles';
 
 function ImageComponent({src}) {
   const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setHasError] = useState(false);
+
+  const [setHasError] = useState(false);
 
   const onLoadStart = () => {
     setIsLoading(true);
@@ -13,13 +14,15 @@ function ImageComponent({src}) {
   const onLoadEnd = () => {
     setIsLoading(false);
   };
+
   const onError = () => {
     setIsLoading(false);
     setHasError(true);
   };
+
   return (
     <View style={styles.imageContainer}>
-      {isLoading && <Text style={styles.loading}>Loading image</Text>}
+      {isLoading && <Text style={styles.loading}>Loading Image</Text>}
       <View>
         <Image
           onLoadEnd={onLoadEnd}

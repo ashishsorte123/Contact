@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
+import React from 'react';
+import {View, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';
@@ -13,9 +13,9 @@ const Message = ({
   danger,
   info,
   success,
-  style,
 }) => {
   const [userDismissed, setDismissed] = React.useState(false);
+
   const getBgColor = () => {
     if (primary) {
       return colors.primary;
@@ -26,17 +26,22 @@ const Message = ({
     if (success) {
       return colors.success;
     }
-
     if (info) {
       return colors.secondary;
     }
   };
+
   return (
     <>
       {userDismissed ? null : (
         <TouchableOpacity
-          style={[styles.wrapper, {backgroundColor: getBgColor()}, style]}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          style={[styles.wrapper, {backgroundColor: getBgColor()}]}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
             <Text
               style={{
                 color: colors.white,
@@ -44,7 +49,7 @@ const Message = ({
               {message}
             </Text>
 
-            {retry && !typeof onDismiss === 'function' && (
+            {retry && typeof onDismiss !== 'function' && (
               <TouchableOpacity onPress={retryFn}>
                 <Text
                   style={{

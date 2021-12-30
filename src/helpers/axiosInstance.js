@@ -8,6 +8,7 @@ let headers = {};
 
 const axiosInstance = axios.create({
   baseURL: envs.BACKEND_URL,
+  headers,
 });
 
 axiosInstance.interceptors.request.use(
@@ -25,12 +26,12 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   response =>
-    new Promise((resolve, reject) => {
+    new Promise(resolve => {
       resolve(response);
     }),
   error => {
     if (!error.response) {
-      return new Promise((resolve, reject) => {
+      return new Promise(reject => {
         reject(error);
       });
     }
@@ -38,7 +39,7 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 403) {
       navigate(LOGOUT, {tokenExpired: true});
     } else {
-      return new Promise((resolve, reject) => {
+      return new Promise(reject => {
         reject(error);
       });
     }

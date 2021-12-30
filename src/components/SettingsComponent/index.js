@@ -41,7 +41,7 @@ const SettingsComponent = ({
         setModalVisible={setModalVisible}
       />
       <ScrollView style={{backgroundColor: colors.white}}>
-        {settingsOptions.map(({title, subTitle, onPress}, index) => (
+        {settingsOptions.map(({title, subTitle, onPress}) => (
           <TouchableOpacity key={title} onPress={onPress}>
             <View
               style={{

@@ -22,6 +22,7 @@ const CreateContactComponent = ({
   localFile,
   onFileSelected,
 }) => {
+  console.log('error :>> ', error);
   return (
     <View style={styles.container}>
       <Container>

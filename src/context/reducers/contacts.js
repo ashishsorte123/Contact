@@ -1,7 +1,8 @@
 import {
-  CREATE_CONTACTS_FAIL,
-  CREATE_CONTACTS_LOADING,
-  CREATE_CONTACTS_SUCCESS,
+  CREATE_CONTACT_FAIL,
+  CREATE_CONTACT_LOADING,
+  CREATE_CONTACT_SUCCESS,
+  DELETE_CONTACTS_FAIL,
   DELETE_CONTACTS_LOADING,
   DELETE_CONTACTS_SUCCESS,
   EDIT_CONTACTS_FAIL,
@@ -84,7 +85,7 @@ const contacts = (state, {type, payload}) => {
         },
       };
 
-    case CREATE_CONTACTS_FAIL:
+    case DELETE_CONTACTS_FAIL:
       return {
         ...state,
         createContact: {
@@ -94,7 +95,7 @@ const contacts = (state, {type, payload}) => {
         },
       };
 
-    case CREATE_CONTACTS_LOADING:
+    case CREATE_CONTACT_LOADING:
       return {
         ...state,
         createContact: {
@@ -103,7 +104,7 @@ const contacts = (state, {type, payload}) => {
           error: null,
         },
       };
-    case CREATE_CONTACTS_SUCCESS:
+    case CREATE_CONTACT_SUCCESS:
       return {
         ...state,
         createContact: {
@@ -120,7 +121,7 @@ const contacts = (state, {type, payload}) => {
           error: null,
         },
       };
-    case CREATE_CONTACTS_FAIL:
+    case CREATE_CONTACT_FAIL:
       return {
         ...state,
         createContact: {

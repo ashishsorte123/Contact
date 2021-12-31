@@ -131,6 +131,8 @@ const CreateContact = () => {
     setLocalFile(image);
   };
 
+  console.log('loading :>> ', loading);
+
   return (
     <CreateContactComponent
       onSubmit={onSubmit}

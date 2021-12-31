@@ -32,8 +32,8 @@ const ContactsComponent = ({sortBy, data, loading}) => {
 
   const ListEmptyComponent = () => {
     return (
-      <View style={{paddingVertical: 100, paddingHorizontal: 100}}>
-        <Message info message="No contacts to show" />
+      <View style={{paddingVertical: 200, paddingHorizontal: 90}}>
+        <Message info message="  No Contacts to show" />
       </View>
     );
   };

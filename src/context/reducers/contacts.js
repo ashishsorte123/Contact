@@ -88,8 +88,8 @@ const contacts = (state, {type, payload}) => {
     case DELETE_CONTACTS_FAIL:
       return {
         ...state,
-        createContact: {
-          ...state.createContact,
+        deleteContact: {
+          ...state.deleteContact,
           loading: false,
           error: null,
         },

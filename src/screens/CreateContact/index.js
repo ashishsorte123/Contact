@@ -64,12 +64,15 @@ const CreateContact = () => {
     }
   }, []);
 
+  console.log('form', form);
+  console.log('localFile', localFile);
+
   const onChangeText = ({name, value}) => {
     setForm({...form, [name]: value});
   };
 
   const onSubmit = () => {
-    if (!params?.contact) {
+    if (params?.contact) {
       if (localFile?.size) {
         setIsUploading(true);
         uploadImage(localFile)(url => {

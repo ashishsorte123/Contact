@@ -15,7 +15,7 @@ export default (form, id) => dispatch => onSuccess => {
     is_favorite: form.isFavorite || false,
   };
 
-  console.log('requestPayload :>> ', requestPayload);
+  // console.log('requestPayload :>> ', requestPayload);
   dispatch({
     type: EDIT_CONTACTS_LOADING,
   });

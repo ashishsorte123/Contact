@@ -13,6 +13,7 @@ const auth = (state, {type, payload}) => {
   switch (type) {
     case LOGIN_LOADING:
     case REGISTER_LOADING:
+      console.log('state', state);
       return {
         ...state,
         loading: true,

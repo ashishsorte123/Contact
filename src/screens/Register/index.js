@@ -1,10 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
-import RegisterComponent from '../../components/Signup';
+
 import register, {clearAuthState} from '../../context/actions/auth/register';
 import {GlobalContext} from '../../context/Provider';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {LOGIN} from '../../constants/routeNames';
 import envs from '../../config/env';
+import RegisterComponent from '../../components/Signup';
 
 const Register = () => {
   // const {BACKEND_URL} = envs;
@@ -97,8 +98,8 @@ const Register = () => {
 
   return (
     <RegisterComponent
-      onChange={onChange}
       onSubmit={onSubmit}
+      onChange={onChange}
       form={form}
       errors={errors}
       error={error}

@@ -1,15 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {Image, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {LOGIN} from '../../constants/routeNames';
 import Container from '../common/Container';
 import CustomButton from '../common/CustomButton';
 import Input from '../common/Input';
-import {LOGIN} from '../../constants/routeNames';
+import Message from '../common/Message';
 import styles from './styles';
-import Message from '../../components/common/Message';
 
-const RegisterComponent = ({loading, onChange, onSubmit, error, errors}) => {
+const RegisterComponent = ({onSubmit, onChange, loading, error, errors}) => {
   const {navigate} = useNavigation();
 
   const [isSecureEntry, setIsSecureEntry] = useState(true);
@@ -42,7 +41,7 @@ const RegisterComponent = ({loading, onChange, onSubmit, error, errors}) => {
           />
 
           <Input
-            label="First Name"
+            label="First name"
             iconPosition="right"
             placeholder="Enter First name"
             error={errors.firstName || error?.first_name?.[0]}
@@ -52,7 +51,7 @@ const RegisterComponent = ({loading, onChange, onSubmit, error, errors}) => {
           />
 
           <Input
-            label="Last Name"
+            label="Last name"
             iconPosition="right"
             placeholder="Enter Last name"
             error={errors.lastName || error?.last_name?.[0]}
@@ -60,10 +59,11 @@ const RegisterComponent = ({loading, onChange, onSubmit, error, errors}) => {
               onChange({name: 'lastName', value});
             }}
           />
+
           <Input
             label="Email"
             iconPosition="right"
-            placeholder="Enter email"
+            placeholder="Enter Email"
             error={errors.email || error?.email?.[0]}
             onChangeText={value => {
               onChange({name: 'email', value});
@@ -72,6 +72,7 @@ const RegisterComponent = ({loading, onChange, onSubmit, error, errors}) => {
 
           <Input
             label="Password"
+            iconPosition="right"
             placeholder="Enter Password"
             secureTextEntry={isSecureEntry}
             icon={
@@ -82,7 +83,6 @@ const RegisterComponent = ({loading, onChange, onSubmit, error, errors}) => {
                 <Text>{isSecureEntry ? 'Show' : 'Hide'}</Text>
               </TouchableOpacity>
             }
-            iconPosition="right"
             error={errors.password || error?.password?.[0]}
             onChangeText={value => {
               onChange({name: 'password', value});
@@ -98,7 +98,7 @@ const RegisterComponent = ({loading, onChange, onSubmit, error, errors}) => {
           />
 
           <View style={styles.createSection}>
-            <Text style={styles.infoText}>Already have an account ?</Text>
+            <Text style={styles.infoText}>Already have an account?</Text>
             <TouchableOpacity
               onPress={() => {
                 navigate(LOGIN);
